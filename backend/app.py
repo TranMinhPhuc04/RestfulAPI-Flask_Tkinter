@@ -7,22 +7,26 @@ from routes.class_routes import class_blueprint
 from routes.subject_routes import subject_blueprint
 from routes.enrollment_routes import enrollment_blueprint
 
-# Khởi tạo ứng dụng Flask
+# Initialize Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
 
-# Khởi tạo cơ sở dữ liệu và migration
+# Initialize database and migration
 db.init_app(app)
 migrate = Migrate(app, db)
 
-# Đăng ký blueprint cho route
+# Create API blueprint
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
 
-# Đăng ký các Blueprint con vào api_blueprint
-app.register_blueprint(student_blueprint, url_prefix='/api/students')
-app.register_blueprint(class_blueprint, url_prefix='/api/classes')
-app.register_blueprint(subject_blueprint, url_prefix='/api/subjects')
-app.register_blueprint(enrollment_blueprint, url_prefix='/api/enrollments')
+# Register sub-blueprints with api_blueprint
+api_blueprint.register_blueprint(student_blueprint, url_prefix='/students')
+api_blueprint.register_blueprint(class_blueprint, url_prefix='/classes')
+api_blueprint.register_blueprint(subject_blueprint, url_prefix='/subjects')
+api_blueprint.register_blueprint(
+    enrollment_blueprint, url_prefix='/enrollments')
+
+# Register api_blueprint with the main app
+app.register_blueprint(api_blueprint)
 
 if __name__ == '__main__':
     app.run(debug=True)
