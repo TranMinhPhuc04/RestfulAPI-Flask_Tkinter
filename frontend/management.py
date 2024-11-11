@@ -168,7 +168,7 @@ class Management:
         button_frame.pack(pady=10)
 
         self.add_class_button = tk.Button(
-            button_frame, text="Add Student", command=self.add_student, bg="#4CAF50", fg="white")
+            button_frame, text="Add Class", command=self.add_class, bg="#4CAF50", fg="white")
         self.add_class_button.grid(row=0, column=0, padx=10, pady=5)
 
         # self.add_class_button = tk.Button(button_frame, text="Add Class", command=self.add_class,
@@ -218,7 +218,7 @@ class Management:
         button_frame.pack(pady=10)
 
         self.add_subject_button = tk.Button(
-            button_frame, text="Add Student", command=self.add_subject, bg="#4CAF50", fg="white")
+            button_frame, text="Add Subject", command=self.add_subject, bg="#4CAF50", fg="white")
         self.add_subject_button.grid(row=0, column=0, padx=10, pady=5)
 
         tk.Button(button_frame, text="Update Subject", command=self.update_subject,
